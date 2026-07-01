@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ug" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="كىنوخانا">
+  <meta name="description" content="كىنوخانا — كىنو-تېلېۋىزىيە سۇپىسى">
+  <meta name="format-detection" content="telephone=no">
+  <title>كىنوخانا</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='8' y='12' width='64' height='56' rx='8' fill='%23e50914'/%3E%3Ccircle cx='40' cy='40' r='8' fill='%230f0f0f'/%3E%3Cpolygon points='37,36 37,44 45,40' fill='%23e50914'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/UKIJEkran.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Splash Screen -->
+    <div id="splash" class="screen splash-screen active">
+      <div class="splash-logo">
+        <svg viewBox="0 0 80 80" width="64" height="64">
+          <rect x="8" y="12" width="64" height="56" rx="8" fill="none" stroke="#e50914" stroke-width="3"/>
+          <rect x="20" y="24" width="40" height="32" rx="4" fill="#e50914"/>
+          <circle cx="40" cy="40" r="8" fill="#0f0f0f"/>
+          <polygon points="37,36 37,44 45,40" fill="#e50914"/>
+        </svg>
+        <h1>كىنوخانا</h1>
+        <p>كىنو-تېلېۋىزىيە سۇپىسى</p>
+      </div>
+      <div class="splash-spinner"></div>
+    </div>
+
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen auth-screen">
+      <div class="auth-bg"></div>
+      <div class="auth-container">
+        <div class="auth-header">
+          <svg viewBox="0 0 80 80" width="48" height="48">
+            <rect x="8" y="12" width="64" height="56" rx="8" fill="none" stroke="#e50914" stroke-width="3"/>
+            <rect x="20" y="24" width="40" height="32" rx="4" fill="#e50914"/>
+            <circle cx="40" cy="40" r="8" fill="#0f0f0f"/>
+            <polygon points="37,36 37,44 45,40" fill="#e50914"/>
+          </svg>
+          <h1>كىنوخانا</h1>
+        </div>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">كىرىش</button>
+          <button class="auth-tab" data-tab="register">تىزىملىتىش</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+          <div class="input-group">
+            <label>ئىشلەتكۈچى ئىسمى</label>
+            <input type="text" name="username" placeholder="ئىشلەتكۈچى ئىسمىنى كىرگۈزۈڭ" required>
+          </div>
+          <div class="input-group">
+            <label>پارول</label>
+            <input type="password" name="password" placeholder="پارولنى كىرگۈزۈڭ" required>
+          </div>
+          <button type="submit" class="btn-primary">كىرىش</button>
+
+          <div class="auth-divider">
+            <span>ياكى</span>
+          </div>
+
+          <button type="button" class="btn-wechat" id="wechat-login-btn">
+            <svg class="wechat-icon" viewBox="0 0 24 24" width="22" height="22">
+              <path fill="currentColor" d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.269-.03-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+            </svg>
+            <span>WeChat ئارقىلىق كىرىش</span>
+          </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form">
+          <div class="input-group">
+            <label>ئىشلەتكۈچى ئىسمى</label>
+            <input type="text" name="username" placeholder="ئىشلەتكۈچى ئىسمى" required>
+          </div>
+          <div class="input-group">
+            <label>تەخەللۇس</label>
+            <input type="text" name="nickname" placeholder="تەخەللۇسىڭىز" required>
+          </div>
+          <div class="input-group">
+            <label>پارول</label>
+            <input type="password" name="password" placeholder="پارول" required>
+          </div>
+          <div class="input-group">
+            <label>ئېلخەت (ئىختىيارى)</label>
+            <input type="email" name="email" placeholder="email@example.com">
+          </div>
+          <button type="submit" class="btn-primary">تىزىملىتىش</button>
+
+          <div class="auth-divider">
+            <span>ياكى</span>
+          </div>
+
+          <button type="button" class="btn-wechat" id="wechat-register-btn">
+            <svg class="wechat-icon" viewBox="0 0 24 24" width="22" height="22">
+              <path fill="currentColor" d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.269-.03-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+            </svg>
+            <span>WeChat ئارقىلىق تىزىملىتىش</span>
+          </button>
+        </form>
+
+        <div id="auth-error" class="auth-error"></div>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="screen main-app">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <h1 id="page-title">كىنوخانا</h1>
+        <button id="search-btn" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Search Bar (hidden by default) -->
+      <div id="search-bar" class="search-bar hidden">
+        <input type="text" id="search-input" placeholder="كىنو ئىزدەڭ...">
+        <button id="search-close" class="icon-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Pages Container -->
+      <main id="pages-container" class="pages-container">
+        <!-- Home Page -->
+        <div id="page-home" class="page active">
+          <!-- Banner Ad -->
+          <div id="banner-ad" class="banner-ad">
+            <div class="banner-slider" id="banner-slider"></div>
+            <div class="banner-dots" id="banner-dots"></div>
+          </div>
+
+          <!-- User Avatars Row -->
+          <div class="home-section">
+            <div id="user-avatars" class="user-avatars-row">
+              <div class="loading-state" style="padding: 16px 0;">
+                <div class="spinner"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Movies Section (电影) -->
+          <div class="home-section cat-section">
+            <div class="section-header">
+              <h2>🎬 كىنولار</h2>
+              <span class="section-more" data-cat="movie">تېخىمۇ كۆپ &gt;</span>
+            </div>
+            <div id="grid-movie" class="cat-grid">
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <p>يۈكلىنىۋاتىدۇ...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TV Shows Section (电视剧) -->
+          <div class="home-section cat-section">
+            <div class="section-header">
+              <h2>📺 تېلېۋىزىيە پەسلىلىرى</h2>
+              <span class="section-more" data-cat="tv">تېخىمۇ كۆپ &gt;</span>
+            </div>
+            <div id="grid-tv" class="cat-grid">
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <p>يۈكلىنىۋاتىدۇ...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anime Section (动漫) -->
+          <div class="home-section cat-section">
+            <div class="section-header">
+              <h2>🎨 كارتۇنلار</h2>
+              <span class="section-more" data-cat="anime">تېخىمۇ كۆپ &gt;</span>
+            </div>
+            <div id="grid-anime" class="cat-grid">
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <p>يۈكلىنىۋاتىدۇ...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Classic Quote -->
+          <div class="footer-quote">
+            <div class="quote-decoration">✦ ✦ ✦</div>
+            <p class="quote-text">
+              «كىنو» — دەسلەپكى ئەسەرىدە<br>
+              «سىيرىلىق رەسىم» دەپ ئاتالغان.
+            </p>
+            <p class="quote-sub">
+              ھەر بىر رەسىم بىر پەرزەنت ئىكەن،<br>
+              ھەر بىر كىنو بىر تەڭلىك ئىكەن.
+            </p>
+            <div class="quote-decoration">✦ ✦ ✦</div>
+          </div>
+        </div>
+
+        <!-- Categories Page -->
+        <div id="page-categories" class="page">
+          <div id="category-list" class="category-list"></div>
+        </div>
+
+        <!-- Activities Page (پائالىيەت) -->
+        <div id="page-activities" class="page">
+          <div class="activities-container">
+            <!-- VIP Promo Banner -->
+            <div class="promo-banner" id="promo-banner">
+              <div class="promo-bg"></div>
+              <div class="promo-content">
+                <div class="promo-icon">
+                  <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                    <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/>
+                  </svg>
+                </div>
+                <div class="promo-text">
+                  <h2>VIP ئەزا بولۇڭ</h2>
+                  <p>بارلىق كىنولارنى چەكلىمىسىز كۆرۈڭ</p>
+                </div>
+                <button class="promo-btn" id="promo-vip-btn">ھوقۇق بېرىش</button>
+              </div>
+            </div>
+
+            <!-- Hot Ranking Section -->
+            <div class="activity-section">
+              <div class="section-header">
+                <h2>🔥 ئەڭ قىزىق كىنولار</h2>
+                <span class="section-subtitle">كۆرۈلۈش بويىچە رەتكە تۇرغۇزۇلغان</span>
+              </div>
+              <div id="hot-ranking" class="ranking-list">
+                <div class="loading-state"><div class="spinner"></div><p>يۈكلىنىۋاتىدۇ...</p></div>
+              </div>
+            </div>
+
+            <!-- New Releases Section -->
+            <div class="activity-section">
+              <div class="section-header">
+                <h2>✨ يېڭى قوشۇلغانلار</h2>
+                <span class="section-subtitle">ئەڭ يېڭى كىنولار</span>
+              </div>
+              <div id="new-releases" class="movie-grid">
+                <div class="loading-state"><div class="spinner"></div><p>يۈكلىنىۋاتىدۇ...</p></div>
+              </div>
+            </div>
+
+            <!-- Top Rated Section -->
+            <div class="activity-section">
+              <div class="section-header">
+                <h2>⭐ يۇقىرى نومۇرلۇقلار</h2>
+                <span class="section-subtitle">نومۇرى ئەڭ يۇقىرى كىنولار</span>
+              </div>
+              <div id="top-rated" class="movie-grid">
+                <div class="loading-state"><div class="spinner"></div><p>يۈكلىنىۋاتىدۇ...</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Page (مېنىڭ) -->
+        <div id="page-profile" class="page">
+          <div class="profile-container">
+            <div class="profile-header">
+              <div class="avatar" id="profile-avatar">
+                <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+                  <path d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm0 2c-2.7 0-8 1.3-8 4v2h16v-2c0-2.7-5.3-4-8-4z"/>
+                </svg>
+              </div>
+              <div class="profile-info">
+                <h2 id="profile-nickname"></h2>
+                <p id="profile-username"></p>
+                <span id="profile-role" class="role-badge"></span>
+              </div>
+            </div>
+
+            <div class="vip-card" id="vip-card">
+              <div class="vip-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                  <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/>
+                </svg>
+              </div>
+              <div class="vip-info">
+                <h3>VIP ئەزا</h3>
+                <p id="vip-status-text"></p>
+              </div>
+            </div>
+
+            <div class="profile-stats">
+              <div class="stat-item" id="stat-history">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <span class="stat-num" id="history-count">0</span>
+                <span>كۆرۈش خاتىرىسى</span>
+              </div>
+              <div class="stat-item" id="stat-favorites">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </div>
+                <span class="stat-num" id="fav-count">0</span>
+                <span>ياقتۇرىدىغانلار</span>
+              </div>
+            </div>
+
+            <div class="profile-menu">
+              <button class="menu-item" id="menu-vip">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <span>VIP ھوقۇقىنى تەكشۈرۈش</span>
+                <svg class="chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="menu-item" id="menu-history">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>كۆرۈش خاتىرىسى</span>
+                <svg class="chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="menu-item" id="menu-favorites">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <span>ياقتۇرىدىغانلار</span>
+                <svg class="chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="menu-item" id="menu-edit-profile">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+                <span>ئۇچۇرلىرىمنى تەھرىرلەش</span>
+                <svg class="chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <button class="menu-item logout" id="menu-logout">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>چىكىنىش</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>باشبەت</span>
+        </button>
+        <button class="nav-item" data-page="categories">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>كاتېگورىيە</span>
+        </button>
+        <button class="nav-item" data-page="activities">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+          <span>پائالىيەت</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>مېنىڭ</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- List Modal (for favorites & history sub-pages) -->
+    <div id="list-modal" class="detail-modal">
+      <div class="detail-content list-content">
+        <div class="edit-header">
+          <h2 id="list-modal-title"></h2>
+          <button class="detail-close" id="list-modal-close">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="list-modal-content" class="movie-grid" style="padding:16px;"></div>
+      </div>
+    </div>
+
+    <!-- Movie Detail Modal -->
+    <div id="movie-detail" class="detail-modal">
+      <div class="detail-content">
+        <div class="detail-backdrop">
+          <img id="detail-backdrop-img" src="" alt="">
+          <button class="detail-close" id="detail-close">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+          <div class="detail-backdrop-overlay"></div>
+          <div class="detail-backdrop-gradient"></div>
+        </div>
+        <div class="detail-body">
+          <div class="detail-header">
+            <div class="detail-poster-wrap">
+              <img id="detail-poster-img" class="detail-poster" src="" alt="">
+              <div class="detail-poster-shine"></div>
+            </div>
+            <div class="detail-header-info">
+              <h1 id="detail-title"></h1>
+              <div id="detail-original-title" class="detail-original-title"></div>
+              <div class="detail-meta">
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  <span id="detail-year"></span>
+                </span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                  <span id="detail-duration"></span>
+                </span>
+                <span class="meta-item rating-item">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span id="detail-rating"></span>
+                </span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  <span id="detail-views"></span>
+                </span>
+              </div>
+              <div id="detail-categories" class="detail-category-tags"></div>
+            </div>
+          </div>
+
+          <div class="detail-actions">
+            <button class="btn-play" id="btn-play">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              ھەممىنى كۆرۈش
+            </button>
+            <button class="btn-fav" id="btn-fav">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+              <span id="btn-fav-text">ياقتۇرۇش</span>
+            </button>
+            <button class="btn-share" id="btn-share">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </button>
+            <button class="btn-download" id="btn-download">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="detail-section">
+            <h3>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              چۈشەندۈرۈش
+            </h3>
+            <p id="detail-description"></p>
+          </div>
+
+          <div class="detail-section" id="detail-director-section">
+            <h3>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              رېژىسسور
+            </h3>
+            <p id="detail-director"></p>
+          </div>
+
+          <div class="detail-section" id="detail-cast-section">
+            <h3>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              ئارتىسلار
+            </h3>
+            <p id="detail-cast"></p>
+          </div>
+
+          <div class="detail-info-grid">
+            <div class="info-card">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+              <span class="info-label">سۈپىتى</span>
+              <span class="info-value">HD 1080p</span>
+            </div>
+            <div class="info-card">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+              <span class="info-label">ئاۋازى</span>
+              <span class="info-value">ئۇيغۇرچە</span>
+            </div>
+            <div class="info-card">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+              <span class="info-label">چوڭلۇقى</span>
+              <span class="info-value">1.2 GB</span>
+            </div>
+            <div class="info-card">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+              <span class="info-label">پىقول</span>
+              <span class="info-value">VIP</span>
+            </div>
+          </div>
+
+          <!-- Episodes Section -->
+          <div class="detail-section episodes-section" id="episodes-section">
+            <h3>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
+              </svg>
+              قىسىملىرى
+              <span class="episodes-count" id="episodes-count"></span>
+            </h3>
+            <div class="episodes-filter">
+              <button class="ep-filter-btn active" data-filter="all">ھەممىسى</button>
+              <button class="ep-filter-btn" data-filter="free">ھەقسىز</button>
+              <button class="ep-filter-btn" data-filter="vip">VIP</button>
+            </div>
+            <div class="episodes-grid" id="episodes-grid">
+              <div class="episode-item played">
+                <span class="ep-num">1</span>
+              </div>
+              <div class="episode-item played">
+                <span class="ep-num">2</span>
+              </div>
+              <div class="episode-item playing">
+                <span class="ep-num">3</span>
+              </div>
+              <div class="episode-item">
+                <span class="ep-num">4</span>
+              </div>
+              <div class="episode-item vip">
+                <span class="ep-num">5</span>
+              </div>
+              <div class="episode-item vip">
+                <span class="ep-num">6</span>
+              </div>
+              <div class="episode-item vip">
+                <span class="ep-num">7</span>
+              </div>
+              <div class="episode-item vip">
+                <span class="ep-num">8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-modal" class="detail-modal">
+      <div class="detail-content edit-content">
+        <div class="edit-header">
+          <h2>ئۇچۇرلىرىمنى تەھرىرلەش</h2>
+          <button class="detail-close" id="edit-close">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <form id="edit-form" class="auth-form active" style="padding:0;">
+          <div class="input-group">
+            <label>تەخەللۇس</label>
+            <input type="text" name="nickname" placeholder="تەخەللۇس">
+          </div>
+          <div class="input-group">
+            <label>ئېلخەت</label>
+            <input type="email" name="email" placeholder="email@example.com">
+          </div>
+          <button type="submit" class="btn-primary">ساقلاش</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
