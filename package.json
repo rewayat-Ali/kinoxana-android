@@ -1,0 +1,27 @@
+{
+  "name": "kinoxana",
+  "displayName": "كىنوخانا",
+  "version": "1.0.0",
+  "description": "كىنوخانا — كىنو-تېلېۋىزىيە سۇپىسى",
+  "main": "index.js",
+  "scripts": {
+    "build": "cordova build android --release",
+    "build:debug": "cordova build android",
+    "prepare": "cordova prepare"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Yultuz",
+  "license": "MIT",
+  "dependencies": {
+    "cordova-android": "^12.0.1"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {}
+  },
+  "devDependencies": {}
+}
