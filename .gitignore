@@ -1,0 +1,13 @@
+node_modules/
+platforms/
+plugins/
+*.keystore
+*.jks
+*.apk
+*.aab
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+release.keystore
